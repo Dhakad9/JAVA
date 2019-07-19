@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Circle
+comment1.params=x\ y\ r
+comment1.target=Circle(double,\ double,\ double)
+comment2.params=r
+comment2.target=Circle(double)
+comment3.params=c
+comment3.target=Circle(Circle)
+comment4.params=
+comment4.target=Circle()
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+numComments=6
