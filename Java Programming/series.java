@@ -23,5 +23,7 @@ class series
             s=s+((x1/a)*sign);
         }
         System.out.println("Sum="+s);
+        
+        
     }
 }
