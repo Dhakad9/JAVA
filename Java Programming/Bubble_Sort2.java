@@ -1,12 +1,12 @@
 import java.util.*;
 
-class Selection_Sort
+class Bubble_Sort2
 {
     int size;
     int a[];
     
     Scanner in=new Scanner(System.in);
-    public Selection_Sort(int n)
+    public Bubble_Sort2(int n)
     {
         size=n;
         a=new int[size];
@@ -19,16 +19,22 @@ class Selection_Sort
     }
     public void sort()
     {
-        for(int i=0;i<size-1;i++)
+        for(int i=0;i<size;i++)
         {
-            int s=i;
             for(int j=i+1;j<size;j++)
-            if(a[j]<a[s]) 
-                s=j;
-            
-            int temp=a[s];
-            a[s]=a[i];
-            a[i]=temp;
+            {
+                if(a[i]>a[j])
+                {
+                    int t=a[j];
+                    a[j]=a[i];
+                    a[i]=t;
+                }
+                for(int k:a)
+        System.out.println(k+"\t");
+        
+        System.out.println("\n");
+            }
+            System.out.println("\n");
         }
     }
     public void display()
@@ -44,7 +50,7 @@ class Selection_Sort
         System.out.println("Enter the size of the array:");
         int n=in.nextInt();
         
-        Selection_Sort ob=new Selection_Sort(n);
+        Bubble_Sort2 ob=new Bubble_Sort2(n);
         ob.input();
         ob.sort();
         ob.display();

@@ -1,12 +1,12 @@
 import java.util.*;
 
-class Selection_Sort
+class Insertion_sort
 {
     int size;
     int a[];
     
     Scanner in=new Scanner(System.in);
-    public Selection_Sort(int n)
+    public Insertion_sort(int n)
     {
         size=n;
         a=new int[size];
@@ -19,16 +19,17 @@ class Selection_Sort
     }
     public void sort()
     {
-        for(int i=0;i<size-1;i++)
+        for(int i=1;i<size;i++)
         {
-            int s=i;
-            for(int j=i+1;j<size;j++)
-            if(a[j]<a[s]) 
-                s=j;
+            int key=a[i];
+            int j=i-1;
             
-            int temp=a[s];
-            a[s]=a[i];
-            a[i]=temp;
+            while(j>=0&&a[j]>key)
+            {
+                a[j+1]=a[j];
+                j=j-1;
+            }
+            a[j+1]=key;
         }
     }
     public void display()
@@ -44,7 +45,7 @@ class Selection_Sort
         System.out.println("Enter the size of the array:");
         int n=in.nextInt();
         
-        Selection_Sort ob=new Selection_Sort(n);
+        Insertion_sort ob=new Insertion_sort(n);
         ob.input();
         ob.sort();
         ob.display();
