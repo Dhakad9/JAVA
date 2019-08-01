@@ -21,6 +21,7 @@ class Selection_Sort
     {
         for(int i=0;i<size-1;i++)
         {
+            
             int s=i;
             for(int j=i+1;j<size;j++)
             if(a[j]<a[s]) 
@@ -29,6 +30,8 @@ class Selection_Sort
             int temp=a[s];
             a[s]=a[i];
             a[i]=temp;
+            
+            
         }
     }
     public void display()
