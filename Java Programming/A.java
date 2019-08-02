@@ -3,6 +3,8 @@ import java.util.*;
 class A
 {
     int x;
+    private int xyz=13;
+    protected int abc=17;
     public A()
     {
         System.out.println("Constructor of class A");
@@ -16,4 +18,5 @@ class A
     {
         System.out.println("I am A");
     }
+    
 }
