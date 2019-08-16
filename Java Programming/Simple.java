@@ -7,10 +7,10 @@ class ABC
 }  
 public class Simple extends ABC
 {  
-    void msg()
+    /*void msg()
     {
         System.out.println("Hello CODER");
-    } 
+    } */
     
     public static void main(String args[])
     {  
