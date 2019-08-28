@@ -1,3 +1,5 @@
+package CodeChef;
+
 import java.util.Scanner;
 
 class codeCheffootball

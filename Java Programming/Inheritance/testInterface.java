@@ -1,3 +1,5 @@
+package Inheritance;
+
 import java.util.*;
 
 class testInterface implements inter

@@ -1,3 +1,5 @@
+package Inheritance;
+
 import java.util.*;
 class AbstractStatic extends staticAbstract
 {

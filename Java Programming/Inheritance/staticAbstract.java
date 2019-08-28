@@ -1,3 +1,5 @@
+package Inheritance;
+
 public abstract class staticAbstract
 {
     int c=0;  

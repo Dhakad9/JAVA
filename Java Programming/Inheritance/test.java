@@ -1,3 +1,5 @@
+package Inheritance;
+
 import java.util.*;
 public class test extends singleLevelInheritance
 {

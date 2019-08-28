@@ -1,3 +1,6 @@
+package Inheritance;
+
+
 import java.util.*;
 public class singleLevelInheritance 
 {

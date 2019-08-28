@@ -1,3 +1,6 @@
+package CodeChef;
+
+
 import java.util.*;
 
 class codechefDistributeApples
