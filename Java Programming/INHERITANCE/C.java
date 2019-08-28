@@ -1,4 +1,4 @@
-package INHERITANCE;
+package Inheritance;
 
 import java.util.*;
 class C extends B implements A

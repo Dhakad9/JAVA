@@ -1,4 +1,4 @@
-package INHERITANCE;
+package Inheritance;
 
 public interface classC extends classA
 {

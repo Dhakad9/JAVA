@@ -1,4 +1,4 @@
-package INHERITANCE;
+package Inheritance;
 import java.util.*;
 
 class classD implements classB,classC
