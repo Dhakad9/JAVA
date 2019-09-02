@@ -1,23 +1,18 @@
 import java.util.*;
 
-class LinkedList
-{
+class LinkedList{
 	Node head;
-	static class Node
-	{
+	Node tail;
+	static class Node{
 		int data;
 		Node next;
-		Node (int d){
+		public Node(int d){
 			data=d;
 			next=null;
-		}
+		} 
 	}
-	public boolean ifEmpty(LinkedList l){
-		if(l.head==null)
-			return true;
-		return false;
-	}
-	public void printlist(){
+	void printList(){
+		System.out.print("Linked List :\t");
 		Node n=head;
 		while(n!=null){
 			System.out.print(n.data+"\t");
@@ -25,86 +20,159 @@ class LinkedList
 		}
 		System.out.println();
 	}
-	public void insertNodeAtFront(int newData){
-		Node newNode=new Node(newData);
-		newNode.next=head;
-		head=newNode;
-	}
-	public void insertNodeAtEnd(int newData){
-		Node newNode=new Node(newData);
-		if(head==null){
-				head=new Node(newData); 
-				return;
+	int getSize(){
+		Node n=head;
+		int c=0;
+		while(n!=null){
+			c++;
+			n=n.next;
 		}
-
-		newNode.next=null;
-
-		Node last=head;
-		while(last.next!=null)
-			last=last.next;
-
-		last.next=newNode;
+		return c;
 	}
-	public void insertAtAnyPosition(int element,int pos){
-    	Node newNode = new Node(element);
- 
- 	   if (pos == 0){
-    	    newNode.next = head;
-        	head = newNode;
-    	}
-    	else
-    	{
-        	Node n = head;
-        	while (--pos>0){
-            	n = n.next;
-        	}
-        newNode.next = n.next;
-        n.next = newNode;
-    	}
+	void addNodeAtEnd(int newData){
+		Node newNode=new Node(newData);
+		
+		if(head==null){
+			head=newNode;
+			tail=newNode;
+			return;
+		}
+		else{
+			tail.next=newNode;
+			tail=newNode;
+		}
+	}
+	void addNodeAtFront(int newData){
+		Node newNode=new Node(newData);
+
+		if(head==null){
+			head=newNode;
+			tail=newNode;
+			return;
+		}
+		else{
+			newNode.next=head;
+			head=newNode;
+		}
+	}
+	void addNodeAtAnyPosition(int newData,int newPosition){
+		Node newNode=new Node(newData);
+
+		if(newPosition<0||newPosition>getSize()){
+			System.out.println("Insertion of size not possible. Size of Linked List is "+getSize());
+		}
+		else{
+			Node n=head;
+			while(--newPosition>1){
+				n=n.next;
+			}
+			newNode.next=n.next;
+			n.next=newNode;
+		}
+	}
+	void deleteNodeAtHead(){
+		if(head.next==null)
+			System.out.println("Only 1 element:List cannot be empty");
+		else
+			head=head.next;
+	}
+	void deleteNodeAtTail(){
+		if(head.next==null)
+			System.out.println("Only 1 element:List cannot be empty");
+		else{
+			Node n=head;
+			Node temp=n;//initialization at starting
+			while(n.next!=null){
+				temp=n;
+				n=n.next;
+			}
+			temp.next=null;
+			tail=temp;
+		}
+	}
+	void deleteNodeAtAnyPosition(int oldPosition){
+		if(oldPosition>0&&oldPosition<=getSize()){
+			Node n=head;
+			while(--oldPosition>1){
+				n=n.next;
+			}
+			n.next=n.next.next;
+		}
+		else System.out.println("Deletion of size not possible. Size of Linked List is "+getSize());
+
+	}
+	boolean searchElementInList(int checkElement){
+		Node n=head;
+		int c=-1;
+		while(n!=null){
+			if(n.data==checkElement) return true;
+			n=n.next;
+		}
+		return false;
+	}
+	boolean ifEmpty(LinkedList l){
+		if(l.head==null)
+			return true;
+		return false;
 	}
 	public static void main(String[] args) {
 		Scanner in=new Scanner(System.in);
-
-		System.out.println("Linked List Implementation");
 		LinkedList list=new LinkedList();
-
-			if(list.ifEmpty(list))
-				System.out.println("Node Empty");
-			else
-				System.out.println("Node have elements");
-
-		list.head=new Node(40);
-		Node second=new Node(30);
-		Node third=new Node(20);
-
-		list.head.next=second;
-		second.next=third;
+   				if(list.ifEmpty(list))
+					System.out.println("Node Empty");
+				else
+					System.out.println("Node have elements");
+		int element;int position;
+		System.out.println("Enter the size of nodes");
+		int n=in.nextInt();
 		
-		System.out.println("Original Linked List");
-		list.printlist();
-		int element;
-		System.out.println("Enter a element to be inserted at front");
+		System.out.println("Enter the elements");
+		for(int i=0;i<n;i++){
+			element=in.nextInt();
+			list.addNodeAtEnd(element);
+		}
+		list.printList();
+
+		System.out.println("Enter element to be inserted at front");
 		element=in.nextInt();
-		list.insertNodeAtFront(element);
-		System.out.println("Node Inserted");
-		list.printlist();
+		list.addNodeAtFront(element);
+		list.printList();
 
-		System.out.println("Enter a element to be inserted at end");
+		System.out.println("Enter element to be inserted at end");
 		element=in.nextInt();
-		list.insertNodeAtEnd(element);
-		System.out.println("Node Inserted");
-		list.printlist();
+		list.addNodeAtEnd(element);
+		list.printList();
 
-		System.out.println("Enter a element and position where to be inserted");
+		System.out.println("Enter element and position where it is to be inserted");
 		element=in.nextInt();
-		int pos=in.nextInt();
-		list.insertAtAnyPosition(element,pos);
-		list.printlist();
+		position=in.nextInt();
+		list.addNodeAtAnyPosition(element,position);
+		list.printList();	
 
+		System.out.println("Deletion of HEAD");
+		list.deleteNodeAtHead();
+		list.printList();
 
-			if(list.ifEmpty(list))
-				System.out.println("Node Empty");
-			else
-				System.out.println("Node have elements");
+		System.out.println("Deletion of TAIL");
+		list.deleteNodeAtTail();
+		list.printList();
+
+		System.out.println("Enter position where element is to be deleted");
+		position=in.nextInt();
+		list.deleteNodeAtAnyPosition(position);
+		list.printList();
+
+		System.out.println("Enter the element to be searched in Linked List");
+		element=in.nextInt();
+		if(list.searchElementInList(element))
+			System.out.println("Search element found ");
+		else
+			System.out.println("Search element not found");
+
+				if(list.ifEmpty(list))
+					System.out.println("Node Empty");
+				else
+					System.out.println("Node have elements");
+
 	}
 }
