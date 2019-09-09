@@ -72,16 +72,16 @@ class LinkedList{
 	}
 	void deleteNodeAtHead(){
 		if(head.next==null)
-			System.out.println("Only 1 element:List cannot be empty");
+			head=null;
 		else
 			head=head.next;
 	}
 	void deleteNodeAtTail(){
 		if(head.next==null)
-			System.out.println("Only 1 element:List cannot be empty");
+			head=null;
 		else{
 			Node n=head;
-			Node temp=n;//initialization at starting
+			Node temp=n;
 			while(n.next!=null){
 				temp=n;
 				n=n.next;
@@ -114,6 +114,14 @@ class LinkedList{
 		if(l.head==null)
 			return true;
 		return false;
+	}
+	void reverseDisplay(Node head){
+		if(head==null)
+			return;
+		else{
+			reverseDisplay(head.next);
+			System.out.print(head.data+"\t");
+		}
 	}
 	public static void main(String[] args) {
 		Scanner in=new Scanner(System.in);
@@ -173,6 +181,9 @@ class LinkedList{
 					System.out.println("Node Empty");
 				else
 					System.out.println("Node have elements");
+
+		System.out.print("Reverse display: \t");
+		list.reverseDisplay(list.head);
 
 	}
 }

@@ -1,12 +1,9 @@
-/* package codechef; // don't place package name! */
+package CodeChef;
 
 import java.util.*;
-import java.lang.*;
-import java.io.*;
 
-/* Name of the class has to be "Main" only if the class is public. */
-class Codechef
-{
+class codechefFibonacci{
+
 	public static int[] Delete(int[] arr,int index) 
     { 
         int[] b = new int[arr.length - 1]; 
@@ -27,18 +24,17 @@ class Codechef
             return n; 
         return fib(n - 1) + fib(n - 2); 
     }
-    
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         Scanner in=new Scanner(System.in);
-        Codechef ob=new Codechef();
-        int T=in.nextInt();
+
+        codechefFibonacci ob=new codechefFibonacci();
+        int t=in.nextInt();
 
         int i=0;
-        while(i<T){
-            int N=in.nextInt();
-            int a[]=new int[N];
-            for(int j=0;j<N;j++){
+        while(i<t){
+            int n=in.nextInt();
+            int a[]=new int[n];
+            for(int j=0;j<n;j++){
                 a[j]=ob.fib(j);
             }
             for(int j=0;j<a.length;j++){
@@ -46,12 +42,11 @@ class Codechef
             }
             int size=a.length;
            while(size!=1){
-				size=a.length;
-				
-				for(int j=0;j<a.length;j++){
-		 	   	if(a.length==1) break;
-					a=ob.Delete(a,j);
-					}
+		size=a.length;
+		for(int j=0;j<a.length;j++){
+		    if(a.length==1) break;
+			a=ob.Delete(a,j);
+		}
            }
            i++;
            for(int k=0;k<a.length;k++){

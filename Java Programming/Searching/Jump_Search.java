@@ -1,3 +1,5 @@
+package Searching;
+
 import java.util.*;
 
 class Jump_Search
@@ -5,7 +7,7 @@ class Jump_Search
     int size;
     int a[];
     int search;
-    Scanner in=new Scanner(System.in);
+    
     public Jump_Search(int n)
     {
         size=n;
@@ -13,6 +15,7 @@ class Jump_Search
     }
     public void input()
     {
+        Scanner in=new Scanner(System.in);
         System.out.println("Enter the elements of the array in ascending order or descending order:");
         for(int i=0;i<size;i++)
         a[i]=in.nextInt();
@@ -45,7 +48,7 @@ class Jump_Search
         
         return -1;
     }
-    public static void main()
+    public static void main(String[] args)
     {
         Scanner in=new Scanner(System.in);
         

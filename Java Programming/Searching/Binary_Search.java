@@ -1,3 +1,5 @@
+package Searching;
+
 import java.util.*;
 
 class Binary_Search
@@ -5,7 +7,7 @@ class Binary_Search
     int size;
     int a[];
     int search;
-    Scanner in=new Scanner(System.in);
+    
     public Binary_Search(int n)
     {
         size=n;
@@ -13,6 +15,7 @@ class Binary_Search
     }
     public void input()
     {
+        Scanner in=new Scanner(System.in);
         System.out.println("Enter the elements of the array:");
         for(int i=0;i<size;i++)
         a[i]=in.nextInt();
@@ -22,14 +25,14 @@ class Binary_Search
     }
     public int search()
     {
-        int f=1; 
-        int z=1;
-        for(int i=0,j=a.length-1,k=0;k<=a.length;k++)
+        int i=0;
+        int j=a.length-1;
+        int z=(int)(i+j)/2;
+        while(i<=j)
         {
-            z=(int)(j+i)/2;
+            z=(int)(i+j)/2;
             if(a[z]==search)
             {
-                f=0;
                 return (z+1);
             }
             else if(a[z]<search)

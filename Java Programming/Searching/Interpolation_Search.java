@@ -5,7 +5,7 @@ class Interpolation_Search
     int size;
     int a[];
     int search;
-    Scanner in=new Scanner(System.in);
+    
     public Interpolation_Search(int n)
     {
         size=n;
@@ -13,6 +13,7 @@ class Interpolation_Search
     }
     public void input()
     {
+        Scanner in=new Scanner(System.in);
         System.out.println("Enter the elements of the array in ascending order or descending order:");
         for(int i=0;i<size;i++)
         a[i]=in.nextInt();
@@ -40,7 +41,7 @@ class Interpolation_Search
         }
         return -1;
     }
-    public static void main()
+    public static void main(String[] args)
     {
         Scanner in=new Scanner(System.in);
         
