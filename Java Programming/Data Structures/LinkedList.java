@@ -123,8 +123,21 @@ class LinkedList{
 			System.out.print(head.data+"\t");
 		}
 	}
+	void reverseList(Node n){
+		Node prev=null;
+		Node current=n;
+		Node next=null;
+		while(current!=null){
+			next=current.next;
+			current.next=prev;
+			prev=current;
+			current=next;
+		}
+		head=prev;
+	}
 	public static void main(String[] args) {
 		Scanner in=new Scanner(System.in);
+		
 		LinkedList list=new LinkedList();
    				if(list.ifEmpty(list))
 					System.out.println("Node Empty");
@@ -181,6 +194,13 @@ class LinkedList{
 					System.out.println("Node Empty");
 				else
 					System.out.println("Node have elements");
+
+		System.out.println("Original list");
+		list.printList();
+
+		System.out.println("Reversing list");
+		list.reverseList(list.head);
+		list.printList();
 
 		System.out.print("Reverse display: \t");
 		list.reverseDisplay(list.head);
