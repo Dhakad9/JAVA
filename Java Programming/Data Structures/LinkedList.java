@@ -3,7 +3,7 @@ import java.util.*;
 class LinkedList{
 	Node head;
 	Node tail;
-	static class Node{
+	class Node{
 		int data;
 		Node next;
 		public Node(int d){
@@ -19,7 +19,7 @@ class LinkedList{
 			n=n.next;
 		}
 		System.out.println();
-	}
+	} 
 	int getSize(){
 		Node n=head;
 		int c=0;

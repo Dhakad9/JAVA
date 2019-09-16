@@ -24,10 +24,15 @@ class Lists{
 
 		System.out.println("Your List:\t"+li);
 
+
+		System.out.println("Enter the element position and element");
+		int pos=in.nextInt();
+		int element=in.nextInt();
+		li.add(pos,element);
+
 		System.out.println("Enter the position to be deleted");
 		pos=in.nextInt();
 		li.remove(pos);
-
 		System.out.println("Your List:\t"+li);
 	}
 }

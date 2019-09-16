@@ -6,7 +6,6 @@ class Quick_Sort
     int size;
     int a[];
     
-    Scanner in=new Scanner(System.in);
     public Quick_Sort(int n)
     {
         size=n;
@@ -14,6 +13,7 @@ class Quick_Sort
     }
     public void input()
     {
+    	Scanner in=new Scanner(System.in);
         System.out.println("Enter the elements of the array:");
         for(int i=0;i<size;i++)
         a[i]=in.nextInt();

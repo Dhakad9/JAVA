@@ -7,20 +7,6 @@ import java.io.*;
 /* Name of the class has to be "Main" only if the class is public. */
 class Codechef
 {
-	public static int[] Delete(int[] arr,int index) 
-    { 
-        int[] b = new int[arr.length - 1]; 
-
-        for (int i = 0, k = 0; i < arr.length; i++) 
-        {  
-            if (i == index)  
-                continue; 
-                
-            b[k++] = arr[i]; 
-        } 
-        return b; 
-    }
-
     static int fib(int n) 
     { 
         if (n <= 1) 
@@ -45,18 +31,16 @@ class Codechef
                 a[j]=a[j]%10;
             }
             int size=a.length;
-           while(size!=1){
-				size=a.length;
-				
-				for(int j=0;j<a.length;j++){
-		 	   	if(a.length==1) break;
-					a=ob.Delete(a,j);
-					}
-           }
-           i++;
-           for(int k=0;k<a.length;k++){
-               System.out.println(a[k]);
+            for(int k=0;k<a.length;k++){
+               System.out.print(a[k]+"\t");
             }
+
+           i=1;
+
+           while(Math.pow(2,i)<=size)i++;
+
+           System.out.println(a[i]);
+
         }
         
     }

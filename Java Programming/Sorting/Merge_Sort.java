@@ -26,7 +26,7 @@ class Merge_Sort
             int m=(l+r)/2;
             
             sort(a,l,m);
-            sort(a,m+1,l);
+            sort(a,m+1,r);
             
             merge(a,l,m,r);
         }
