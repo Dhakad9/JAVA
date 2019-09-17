@@ -39,6 +39,5 @@ public class InterfaceImplements implements INTERFACE,Second {
  * we use interface abstration. We can also achieve multiple inheritance using interfaces
  * A method is called abstract method if it has a declaration but not the body.The body of the 
  * method is defined in the class implementing that interface.
- *
  */
 		
