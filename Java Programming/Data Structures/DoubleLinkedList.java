@@ -1,46 +1,39 @@
 import java.util.*;
 
-class LinkedList{
+class DoubleLinkedList{
 	Node head;
 	Node tail;
 	class Node{
 		int data;
+		Node prev;
 		Node next;
-		public Node(int d){
-			data=d;
-			next=null;
-		} 
+		public Node(int data){
+			this.data=data;
+		}
 	}
 	void printList(){
-		System.out.print("Linked List :\t");
+		System.out.println("Forward display:\t");
 		Node n=head;
 		while(n!=null){
 			System.out.print(n.data+"\t");
 			n=n.next;
 		}
+		System.out.println("\nBackward display:\t");
+		n=tail;
+		while(n!=null){
+			System.out.print(n.data+"\t");
+			n=n.prev;
+		}
 		System.out.println();
-	} 
+	}
 	int getSize(){
 		Node n=head;
-		int c=0;
+		int count=0;
 		while(n!=null){
-			c++;
+			count++;
 			n=n.next;
 		}
-		return c;
-	}
-	void addNodeAtEnd(int newData){
-		Node newNode=new Node(newData);
-		
-		if(head==null){
-			head=newNode;
-			tail=newNode;
-			return;
-		}
-		else{
-			tail.next=newNode;
-			tail=newNode;
-		}
+		return count;
 	}
 	void addNodeAtFront(int newData){
 		Node newNode=new Node(newData);
@@ -48,57 +41,72 @@ class LinkedList{
 		if(head==null){
 			head=newNode;
 			tail=newNode;
-			return;
 		}
 		else{
 			newNode.next=head;
+			head.prev=newNode;
 			head=newNode;
+		}	
+	}
+	void addNodeAtTail(int newData){
+		Node newNode=new Node(newData);
+		if(head==null){
+			head=newNode;
+			tail=newNode;
+		}
+		else{
+			tail.next=newNode;
+			newNode.prev=tail;
+			tail=newNode;
 		}
 	}
 	void addNodeAtAnyPosition(int newData,int newPosition){
-		Node newNode=new Node(newData);
-
-		if(newPosition<0||newPosition>getSize()){
-			System.out.println("Insertion of size not possible. Size of Linked List is "+getSize());
-		}
+		Node newNode= new Node(newData);
+		if(newPosition<0||newPosition>getSize())
+			System.out.println("Insertion at this position not possible");
 		else{
 			Node n=head;
 			while(--newPosition>1){
 				n=n.next;
 			}
 			newNode.next=n.next;
+			n.next.prev=newNode;
+
 			n.next=newNode;
+			newNode.prev=n;
 		}
 	}
 	void deleteNodeAtHead(){
-		if(head.next==null)
+		if(head.next==null){
 			head=null;
-		else
+			tail=null;
+		}
+		else{
 			head=head.next;
+			head.prev=null;
+		}
 	}
 	void deleteNodeAtTail(){
-		if(head.next==null)
+		if(head.next==null){
 			head=null;
+			tail=null;
+		}
 		else{
-			Node n=head;
-			Node temp=n;
-			while(n.next!=null){
-				temp=n;
-				n=n.next;
-			}
-			temp.next=null;
-			tail=temp;
+			tail=tail.prev;
+			tail.next=null;
 		}
 	}
 	void deleteNodeAtAnyPosition(int oldPosition){
-		if(oldPosition>0&&oldPosition<=getSize()){
+		if(oldPosition<0||oldPosition>getSize())
+			System.out.println("Deletion at this position not possible");
+		else{
 			Node n=head;
 			while(--oldPosition>1){
 				n=n.next;
 			}
 			n.next=n.next.next;
+			n.next.prev=n;
 		}
-		else System.out.println("Deletion of size not possible. Size of Linked List is "+getSize());
 	}
 	boolean searchElementInList(int checkElement){
 		Node n=head;
@@ -108,35 +116,15 @@ class LinkedList{
 		}
 		return false;
 	}
-	boolean ifEmpty(LinkedList l){
+	boolean ifEmpty(DoubleLinkedList l){
 		if(l.head==null)
 			return true;
 		return false;
 	}
-	void reverseDisplay(Node head){
-		if(head==null)
-			return;
-		else{
-			reverseDisplay(head.next);
-			System.out.print(head.data+"\t");
-		}
-	}
-	void reverseList(Node n){
-		Node prev=null;
-		Node current=n;
-		Node next=null;
-		while(current!=null){
-			next=current.next;
-			current.next=prev;
-			prev=current;
-			current=next;
-		}
-		head=prev;
-	}
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		Scanner in=new Scanner(System.in);
 		
-		LinkedList list=new LinkedList();
+		DoubleLinkedList list=new DoubleLinkedList();
    				if(list.ifEmpty(list))
 					System.out.println("Node Empty");
 				else
@@ -148,7 +136,7 @@ class LinkedList{
 		System.out.println("Enter the elements");
 		for(int i=0;i<n;i++){
 			element=in.nextInt();
-			list.addNodeAtEnd(element);
+			list.addNodeAtTail(element);
 		}
 		list.printList();
 
@@ -159,7 +147,7 @@ class LinkedList{
 
 		System.out.println("Enter element to be inserted at end");
 		element=in.nextInt();
-		list.addNodeAtEnd(element);
+		list.addNodeAtTail(element);
 		list.printList();
 
 		System.out.println("Enter element and position where it is to be inserted");
@@ -191,16 +179,6 @@ class LinkedList{
 				if(list.ifEmpty(list))
 					System.out.println("Node Empty");
 				else
-					System.out.println("Node have elements");
-
-		System.out.println("Original list");
-		list.printList();
-
-		System.out.println("Reversing list");
-		list.reverseList(list.head);
-		list.printList();
-
-		System.out.print("Reverse display: \t");
-		list.reverseDisplay(list.head);
+					System.out.println("Node have elements");		
 	}
 }

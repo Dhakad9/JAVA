@@ -1,45 +1,49 @@
 import java.util.*;
 
-class LinkedList{
+class CircularLinkedList{
 	Node head;
 	Node tail;
 	class Node{
 		int data;
 		Node next;
-		public Node(int d){
-			data=d;
-			next=null;
-		} 
+		public Node(int data){
+			this.data=data;
+		}
 	}
 	void printList(){
-		System.out.print("Linked List :\t");
-		Node n=head;
-		while(n!=null){
-			System.out.print(n.data+"\t");
-			n=n.next;
+		if(head!=null){
+			Node n=head;
+			do{
+				System.out.print(n.data+"\t");
+				n=n.next;
+			}while(n!=tail.next);
 		}
+		else System.out.println("Node empty");
 		System.out.println();
-	} 
+	}
 	int getSize(){
-		Node n=head;
-		int c=0;
-		while(n!=null){
-			c++;
-			n=n.next;
+		int count=0;
+		if(head!=null){
+			Node n=head;
+			do{
+				count++;
+				n=n.next;
+			}while(n!=tail.next);
 		}
-		return c;
+		return count;
 	}
 	void addNodeAtEnd(int newData){
 		Node newNode=new Node(newData);
-		
+
 		if(head==null){
 			head=newNode;
 			tail=newNode;
-			return;
+			tail.next=head;
 		}
 		else{
 			tail.next=newNode;
 			tail=newNode;
+			newNode.next=head;
 		}
 	}
 	void addNodeAtFront(int newData){
@@ -48,18 +52,19 @@ class LinkedList{
 		if(head==null){
 			head=newNode;
 			tail=newNode;
-			return;
+			tail.next=head;
 		}
 		else{
 			newNode.next=head;
 			head=newNode;
+			tail.next=head;
 		}
 	}
 	void addNodeAtAnyPosition(int newData,int newPosition){
 		Node newNode=new Node(newData);
 
 		if(newPosition<0||newPosition>getSize()){
-			System.out.println("Insertion of size not possible. Size of Linked List is "+getSize());
+			System.out.println("Insertion at this position not possible. Size of Linked List is "+getSize());
 		}
 		else{
 			Node n=head;
@@ -71,24 +76,29 @@ class LinkedList{
 		}
 	}
 	void deleteNodeAtHead(){
-		if(head.next==null)
+		if(head.next==tail){
 			head=null;
-		else
+			tail=null;
+		}
+		else{
 			head=head.next;
+		}
 	}
 	void deleteNodeAtTail(){
-		if(head.next==null)
+		if(head.next==tail){
 			head=null;
+			tail=null;
+		}
 		else{
 			Node n=head;
 			Node temp=n;
-			while(n.next!=null){
+			do{
 				temp=n;
 				n=n.next;
-			}
-			temp.next=null;
+			}while(n!=tail);
+			temp.next=head;
 			tail=temp;
-		}
+		}	
 	}
 	void deleteNodeAtAnyPosition(int oldPosition){
 		if(oldPosition>0&&oldPosition<=getSize()){
@@ -98,45 +108,33 @@ class LinkedList{
 			}
 			n.next=n.next.next;
 		}
-		else System.out.println("Deletion of size not possible. Size of Linked List is "+getSize());
+		else System.out.println("Deletion at this position is not possible. Size of Linked List is "+getSize());
 	}
 	boolean searchElementInList(int checkElement){
 		Node n=head;
-		while(n!=null){
+		do{
 			if(n.data==checkElement) return true;
 			n=n.next;
-		}
+		}while(n!=tail.next);
 		return false;
 	}
-	boolean ifEmpty(LinkedList l){
+	void reverseDisplay(Node n){
+		if(n.next==head){
+			System.out.print(n.data+"\t");
+			return;
+		}
+			reverseDisplay(n.next);
+			System.out.print(n.data+"\t");
+	}
+	boolean ifEmpty(CircularLinkedList l){
 		if(l.head==null)
 			return true;
 		return false;
 	}
-	void reverseDisplay(Node head){
-		if(head==null)
-			return;
-		else{
-			reverseDisplay(head.next);
-			System.out.print(head.data+"\t");
-		}
-	}
-	void reverseList(Node n){
-		Node prev=null;
-		Node current=n;
-		Node next=null;
-		while(current!=null){
-			next=current.next;
-			current.next=prev;
-			prev=current;
-			current=next;
-		}
-		head=prev;
-	}
 	public static void main(String[] args) {
 		Scanner in=new Scanner(System.in);
-		
-		LinkedList list=new LinkedList();
+
+		CircularLinkedList list=new CircularLinkedList();
    				if(list.ifEmpty(list))
 					System.out.println("Node Empty");
 				else
@@ -196,11 +194,8 @@ class LinkedList{
 		System.out.println("Original list");
 		list.printList();
 
-		System.out.println("Reversing list");
-		list.reverseList(list.head);
-		list.printList();
-
 		System.out.print("Reverse display: \t");
 		list.reverseDisplay(list.head);
 	}
+
 }
