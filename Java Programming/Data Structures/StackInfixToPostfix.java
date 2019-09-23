@@ -86,7 +86,11 @@ class StackInfixToPostfix{
 		return res;
 	}
 	public static void main(String[] args) {
-		String e="a+b*c/e";
-		System.out.println(StackInfixToPostfix.convert(e));	
+		Scanner in=new Scanner(System.in);
+
+		System.out.println("Enter the Expression");
+		String exp=in.nextLine();
+		//String e="a+b*c/e";
+		System.out.println(convert(exp));	
 	}
 }
