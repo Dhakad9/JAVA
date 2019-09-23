@@ -35,7 +35,8 @@ class StackInfixToPostfix{
 	static char peek(){
 		if(!ifEmpty())
 			return (char)top.data;
-		else return '0'; 	}
+		else return '0'; 	
+	}
 	static int precedence(char ch){
 		switch (ch) {
 			case '+' :
@@ -90,7 +91,6 @@ class StackInfixToPostfix{
 
 		System.out.println("Enter the Expression");
 		String exp=in.nextLine();
-		//String e="a+b*c/e";
 		System.out.println(convert(exp));	
 	}
 }
