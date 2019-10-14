@@ -1,3 +1,6 @@
+//A simple program implementing the Circular Linked List and giving different operations in the linked list.
+//Made by:- Shreyans Jain
+
 import java.util.*;
 
 class CircularLinkedList{
