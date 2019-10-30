@@ -34,7 +34,7 @@ class ThreadSuspendeResume{
 			System.out.println("Second Thread revived");
 			t2.resume();
 
-			System.out.println("Second thead went for 10 seconds sleep");
+			System.out.println("Second thread went for 10 seconds sleep");
 			t2.sleep(10000);
 
 			System.out.println("Wake up second thread and finishes running");
