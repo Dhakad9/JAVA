@@ -44,3 +44,16 @@ class ThreadSuspendeResume{
 		}
 	}
 }
+
+/*
+$javac ThreadSuspendeResume.java
+Note: ThreadSuspendeResume.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+$java -Xmx128M -Xms16M ThreadSuspendeResume
+First Thread running
+Second Thread revived
+Second thread went for 10 seconds sleep
+Second Thread starts running
+Second Thread suspended
+First Thread Finishes Running
+*/
