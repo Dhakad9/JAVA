@@ -13,7 +13,7 @@ class tryCatch3
             {
                 switch(i)
                 {
-                    case 1 :    int b[]={ };   int j=b[0];
+                    case 1 :    int b[]={ };   int j=b[0]; break;
                     case 2 :    int a[]=new int[0];     System.out.println(a[12]);   break;
                     case 3 :    System.out.println(13/0);   break;
                 }
