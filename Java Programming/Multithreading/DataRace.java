@@ -1,7 +1,7 @@
 class DataRace extends Thread{
 	static int x;
 	public void run(){
-		for(int i=0;i<100000;i++){
+		for(int i=0;i<10;i++){
 			x=x+1;
 			System.out.println(x);
 			x=x-1;
