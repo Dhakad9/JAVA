@@ -1,58 +1,84 @@
 import java.util.*;
 
 class BinaryTree{
-	Node root;
 	class Node{
 		int data;
 		Node left;
 		Node right;
-		public Node(int data){
-			this.data=data;
+		public Node(int d){
+			data=d;
 			left=right=null;
 		}
 	}
-	Node addNode(int data){
-		Node newNode=new Node(data);
-		return newNode;
+	Node root;
+	public Node getRoot(){
+		return root;
 	}
-	void displayPreorder(Node n){
+	void preorderDisplay(Node n){
 		if(n==null)
 			return;
 		System.out.print(n.data+"\t");
-		displayPreorder(n.left);
-		displayPreorder(n.right);
+		preorderDisplay(n.left);
+		preorderDisplay(n.right);
 	}
-	void displayInorder(Node n){
+	void inorderDisplay(Node n){
 		if(n==null)
 			return;
-		displayInorder(n.left);
+		inorderDisplay(n.left);
 		System.out.print(n.data+"\t");
-		displayInorder(n.right);
+		inorderDisplay(n.right);
 	}
-	void displayPostorder(Node n){
+	void postorderDisplay(Node n){
 		if(n==null)
 			return;
-		displayPostorder(n.left);
-		displayPostorder(n.right);
+		postorderDisplay(n.left);
+		postorderDisplay(n.right);
 		System.out.print(n.data+"\t");
+	}
+	void insertNode(int d){
+		root=insert(root,d);
+	}
+	Node insert(Node root,int data){
+		if(root==null)
+			return new Node(data);
+
+		if(data<root.data)
+			root.left=insert(root.left,data);
+		else if(data>root.data)
+			root.right=insert(root.right,data);
+		else
+			return root;
+
+		return root;
+	}
+	boolean search(int s){
+		Node n=root;
+		while(n!=null){
+			if(n.data==s)
+				return true;
+			else if(n.data<s)
+				n=n.right;
+			else if(n.data>s)
+				n=n.left;
+		}
+		return false;
 	}
 	public static void main(String[] args) {
 		Scanner in =new Scanner(System.in);
-		
-		BinaryTree tree=new BinaryTree();
-		tree.root=tree.addNode(1);
-		tree.root.left=tree.addNode(2);
-		tree.root.right=tree.addNode(3);
-		tree.root.left.left=tree.addNode(4);
-		tree.root.left.right=tree.addNode(5);
+		BinaryTree bt=new BinaryTree();
 
-		System.out.println("Pre-Order dispalay :\t");
-		tree.displayPreorder(tree.root);
-		System.out.println();
-		System.out.println("In-Order dispalay :\t");
-		tree.displayInorder(tree.root);
-		System.out.println();
-		System.out.println("Post-Order dispalay :\t");
-		tree.displayPostorder(tree.root);
+		System.out.println("Enter the number of nodes to enter");
+		int n=in.nextInt();
+
+		System.out.println("Enter the Nodes");
+		for(int i=0;i<n;i++)
+			bt.insertNode(in.nextInt());
+
+		System.out.println("Pre-order display:\t"); bt.preorderDisplay(bt.getRoot());System.out.println();
+		System.out.println("In-order display:\t");  bt.inorderDisplay(bt.getRoot());System.out.println();
+		System.out.println("Post-order display:\t");bt.postorderDisplay(bt.getRoot());System.out.println();
+	
+		System.out.println(bt.search(5));
+		System.out.println(bt.search(50));
 	}
 }

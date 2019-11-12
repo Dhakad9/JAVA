@@ -1,5 +1,6 @@
 import java.io.*;
-class File 
+
+class FileWriterReader
 { 
 	public static void main(String[] args) throws IOException 
 	{ 
