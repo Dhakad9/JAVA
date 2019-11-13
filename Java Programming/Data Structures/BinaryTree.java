@@ -63,6 +63,46 @@ class BinaryTree{
 		}
 		return false;
 	}
+	int smallestValue(Node n){
+		return n.left==null?n.data:smallestValue(n.left);
+	}
+	Node delete(Node n,int value){
+		if(n==null)
+			return null;
+		if(value==n.data){
+			if(n.left==null && n.right==null)
+				return null;
+			else if(n.right==null)
+				return n.left;
+			else if(n.left==null)
+				return n.right;
+			else{
+				int min=smallestValue(n.right);
+				n.data=min;
+				n.right=delete(n.right,min);
+				return n;
+			}
+		}
+		if(value<n.data){
+			n.left=delete(n.left,value);
+			return n;
+		}
+		n.right=delete(n.right,value);
+			return n;
+	}
+	void deleteNode(int value){
+		root=delete(root,value);
+	}
+	public void dfsInTree(Node n){
+		Stack<Node> s=new Stack<Node>();
+		s.add(root);
+		while(s.isEmpty()==false){
+			Node x=s.pop();
+			if(x.right!=null) s.add(x.right);
+			if(x.left!=null)  s.add(x.left);
+			System.out.print(x.data+"\t");
+		}
+	}
 	public static void main(String[] args) {
 		Scanner in =new Scanner(System.in);
 		BinaryTree bt=new BinaryTree();
@@ -74,11 +114,16 @@ class BinaryTree{
 		for(int i=0;i<n;i++)
 			bt.insertNode(in.nextInt());
 
-		System.out.println("Pre-order display:\t"); bt.preorderDisplay(bt.getRoot());System.out.println();
-		System.out.println("In-order display:\t");  bt.inorderDisplay(bt.getRoot());System.out.println();
-		System.out.println("Post-order display:\t");bt.postorderDisplay(bt.getRoot());System.out.println();
+		System.out.println("\n Pre-order display:\t"); bt.preorderDisplay(bt.getRoot());
+		System.out.println("\n In-order display:\t");  bt.inorderDisplay(bt.getRoot());
+		System.out.println("\n Post-order display:\t");bt.postorderDisplay(bt.getRoot());
+		System.out.println("\n Dfs-order display:");bt.dfsInTree(bt.getRoot());
+		System.out.println("\n Enter the number to be searched");
+		System.out.println(bt.search(in.nextInt())?" Element found ":" Element not found ");
+		System.out.println(" Enter the number to be deleted");
+		bt.deleteNode(in.nextInt());
+		System.out.println("Dfs-order display:\t");  bt.dfsInTree(bt.getRoot());
 	
-		System.out.println(bt.search(5));
-		System.out.println(bt.search(50));
+		
 	}
 }
