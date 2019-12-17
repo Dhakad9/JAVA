@@ -9,7 +9,7 @@ class tryCatch1
     {
         return a/b; //Normal division of a and b
     }
-    public static void main()
+    public static void main(String args[])
     {
         try
         {
@@ -20,5 +20,6 @@ class tryCatch1
         {
             System.out.println("Divide by zero error");//this line runs when error occurs 
         }
+        
     }
 }
